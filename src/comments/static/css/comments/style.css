@@ -1,0 +1,146 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600&family=Open+Sans:ital,wght@0,300;0,500;0,600;1,400;1,500&display=swap');
+
+/* body ---------- */
+html {
+    font-size: 14px;
+}
+
+*, body {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Open sans", sans-serif;
+    font-size: 1rem;
+
+}
+body {
+    background-color: #F0F0F0;
+    display: flex;
+    justify-content: center;
+    margin: 0px 20px;
+}
+
+
+
+/* main ----------- */
+main {
+    max-width: 600px;
+    width: 100%;
+}
+
+h1 {
+    padding: 20px 0px;
+    margin-bottom: 20px;
+}
+
+h1 span {
+    color: #549BCF;
+
+}
+h1 , h1 span{
+    font-size: 1.5rem;
+    text-align: center;
+    font-family: "Montserrat", sans-serif;
+}
+
+
+/* Form ------------- */
+form textarea, form textarea::placeholder {
+    color: #6F6F6F;
+    font-size: 1rem;
+    
+}
+form textarea {
+    width: 100%;
+    outline: none;
+    border: none;
+    padding: 10px;
+    resize: none;
+    box-shadow: -4px 4px 6px 2px rgba(0, 0, 0, 0.12);
+    border-radius: 10px;
+    margin-bottom: 10px;
+}
+form input[type="submit"]:hover, .cancel-btn:hover {
+    box-shadow: -4px 4px 6px 1px rgba(0, 0, 0, 0.12);
+}   
+form input[type="submit"], .cancel-btn {
+    /* width: 100%; */
+    outline: none;
+    border: none;
+    padding: 10px;
+    background-color: #549BCF;
+    color: white;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    border-radius: 10px;
+    margin-bottom: 10px;
+}
+
+.cancel-btn {
+    background-color: #D9D9D9;
+    color: black;
+}
+
+
+/* comments --------- */
+#all-comments {
+    margin-top: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+}
+
+.comment {
+    background-color: #D9D9D9;
+    border-radius: 10px;
+    margin-bottom: 8px;
+    padding: 10px;
+    width: 100%;
+}
+
+.comment .infos h3 {
+    text-transform: uppercase;
+    margin-right: 20px;
+}
+.comment .infos p {
+    font-weight: 300;
+}
+
+.comment .infos {
+    display: flex;
+    margin-bottom: 3px;
+
+}
+
+.comment .content {
+    margin-bottom: 15px;
+}
+
+.comment .action p, .comment .action p > span {
+    font-size: .8rem;
+}
+
+.comment .action button.liked {
+    color: #549BCF;
+}
+.comment .action button {
+    cursor: pointer;
+    padding: 5px;
+    background: transparent;
+    border: none;
+}
+
+.comment .action > div {
+    display: flex;
+    justify-content: space-between;
+}
+.comment .action > div > div {
+    display: flex;
+    align-items: center;
+    
+}
+
+#response-form > textarea {
+    height: 40px;
+}

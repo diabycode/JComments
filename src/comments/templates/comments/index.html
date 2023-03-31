@@ -1,0 +1,92 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'css/comments/style.css' %}">
+    <title>JComments</title>
+</head>
+<body>
+    <main>
+        <h1><span>J</span>Comments</h1>
+
+        <form action="#" method="POST" id="comment_form">
+            {% csrf_token %}
+
+            <textarea placeholder="De quoi voulez-vous parler ?" name="comment_content"></textarea>
+            <input type="submit" value="Publier">
+
+        </form>
+
+        <div id="all-comments">
+            {% for comment in comments %}
+                <div class="comment comment{{ comment.pk }} {% if comment.has_children %} isparent {% endif%} {% if comment.is_child %} ischild {% endif%}" data-id="{{ comment.pk }}" {% if comment.is_child %} data-parent="{{ comment.parent.pk }}" {% endif%}>
+                    <div class="infos">
+                        <h3>{{ comment.author.username }}</h3>
+                        <p>{{ comment.publish_date }}</p>
+                    </div>
+                    <div class="content">
+                        <p>{{ comment.content }}</p>
+                    </div>
+            
+                    <div class="action">
+                        <p><span>{{ comment.like_count }}</span> J'aime(s)</p>
+                        
+                        <div>
+                            <div>
+                                <button class="{{comment.pk}} btn like-btn {% if request.user in comment.likes.all %} liked {% endif %}">J'aime</button>
+                                <button class="btn response-btn">Répondre</button>
+                            </div>
+                            {% if request.user == comment.author %}
+                                <button class="btn delete-btn">supprimer</button>
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+
+            {% endfor %}
+            
+
+        </div>
+    </main>
+
+    <template id="comment-template">
+        <div class="infos">
+            <h3>Comment author</h3>
+            <p>Comment date</p>
+        </div>
+        <div class="content">
+            <p>Comment content</p>
+        </div>
+
+        <div class="action">
+            <p><span>33</span> J'aime(s)</p>
+
+            <div>
+                <div>
+                    <button class="btn like-btn">J'aime</button>
+                    <button class="btn response-btn">Répondre</button>
+                </div>
+                <button class="btn delete-btn">supprimer</button>
+            </div>
+        </div>
+
+    </template>
+
+    <template id="response-form-template">
+        <form action="#" method="POST" id="response-form">
+            {% csrf_token %}
+
+            <textarea autofocus placeholder="De quoi voulez-vous parler ?" name="re-comment_content"></textarea>
+            <input type="submit" value="Répondre">
+            <button type="button" class="btn cancel-btn">Annuler</button>
+        </form>
+
+    </template>
+    <script type="module" src="{% static 'js/comments/main.js' %}"></script>
+    <script type="module" src="{% static 'js/comments/comment.js' %}"></script>
+</body>
+</html>
