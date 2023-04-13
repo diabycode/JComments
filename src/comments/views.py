@@ -1,6 +1,7 @@
 from django.shortcuts import render
 from .models import Comment
 from django.http import JsonResponse
+from django.contrib.auth.decorators import login_required
 
 import json
 
@@ -26,6 +27,7 @@ def index(request):
 
 
 # create a new comment 
+@login_required(login_url="/admin/")
 def create_comment(request):
     if request.method == 'POST':
         body = json.loads(request.body.decode('utf-8'))
@@ -57,6 +59,7 @@ def create_comment(request):
     return JsonResponse({'status': 'error'})
 
 
+@login_required(login_url="/admin/")
 def delete_comment(request, pk):
     if request.method == 'GET':
         # delete a comment
@@ -66,6 +69,7 @@ def delete_comment(request, pk):
     return JsonResponse({'status': 'error'})
 
 
+@login_required(login_url="/admin/")
 def like_comment(request, pk):
     if request.method == 'GET':
 

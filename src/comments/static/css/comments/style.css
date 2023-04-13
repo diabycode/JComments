@@ -15,9 +15,8 @@ html {
 }
 body {
     background-color: #F0F0F0;
-    display: flex;
-    justify-content: center;
-    margin: 0px 20px;
+    /* margin: 0px 20px; */
+    position: relative;
 }
 
 
@@ -26,6 +25,8 @@ body {
 main {
     max-width: 600px;
     width: 100%;
+    margin: auto;
+    position: relative;
 }
 
 h1 {
@@ -143,4 +144,63 @@ form input[type="submit"], .cancel-btn {
 
 #response-form > textarea {
     height: 40px;
+}
+
+
+/* login required alert */
+.login_required {
+    position: fixed;
+    top: 0px;
+    left: 0px;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.179);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.login_required > div {
+    background-color: #F0F0F0;
+    padding: 20px;
+
+
+}
+.login_required p {
+    margin-bottom: 10px;
+}
+.login_required a {
+    padding: 10px 15px;
+    background-color: #549BCF;
+    display: inline-block;
+    color: white;
+    text-decoration: none;
+    font-weight: 600;
+    width: 100%;
+    text-align: center;
+}
+
+.to-top.show {
+    display: flex!important;
+}
+.to-top {
+    display: none;
+    background-color: #549BCF;
+    color: #F0F0F0;
+    font-weight: 600;
+    width: 40px;
+    height: 30px;
+    justify-content: center;
+    align-items: center;
+    border-radius: 10%;
+    position: fixed;
+    bottom: 50px;
+    right: 50px;
+    cursor: pointer;
+    user-select: none;
+    box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.194);
+}
+
+.to-top:hover {
+    transform: translateY(-2px);
 }

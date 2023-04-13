@@ -1,4 +1,4 @@
-import {createElement} from "./utils.js"
+import {createElement, login_required, showTopReturnBtn, hideTopReturnBtn} from "./utils.js"
 
 document.addEventListener("DOMContentLoaded", (e) => {
     if (localStorage.getItem("prevScrollLevel")) {
@@ -47,7 +47,9 @@ class Comment {
                         window.location.reload()
                     }
                 })
-                .catch((error) => console.log(error))
+                .catch((error) => {
+                    login_required()
+                })
         }
 
     }
@@ -64,7 +66,9 @@ class Comment {
                 this.domShower.querySelector(".action p > span").innerText = data.likes
                 
             })
-            .catch((error) => console.log(error))
+            .catch((error) => {
+                login_required()
+            })
     }
 
     get ischild () {
@@ -284,7 +288,9 @@ class Comments {
                 this.clearForm()
                 this.updateShowers()
             })
-            .catch((error) => console.log(error))
+            .catch((error) => {
+                login_required()
+            })
     }
 
     async handleCommentForm (e) {
@@ -319,105 +325,21 @@ class Comments {
 const comments = new Comments()
 
 
+// top button
+document.querySelector(".to-top").addEventListener("click", () => {
+    window.scrollTo({
+        top: 0,
+        behavior: "smooth"
+    })
+})
+
+window.addEventListener("scroll", () => {
+    if (window.scrollY > 150) {
+        showTopReturnBtn()
+    } else {
+        hideTopReturnBtn()
+    }
+})
 
 
-
-
-
-
-
-
-
-// ---------------------------------------------------
-
-
-
-/**
- * get comment shower
- */
-// function getCommentShower (commentObject) {
-//     const template = document.querySelector("#comment-template").content.cloneNode(true)
-
-//     template.querySelector(".infos h3").innerText = commentObject.author
-//     template.querySelector(".infos p").innerText = commentObject.publish_date
-//     template.querySelector(".content p").innerText = commentObject.content
-//     template.querySelector(".action p > span").innerText = commentObject.likes
-
-//     const commentWrapper = createElement("div", {class: "comment"})
-//     commentWrapper.appendChild(template)
-//     return commentWrapper
-
-// }
-
-
-
-// /**
-//  * add comment in DOM
-//  */
-// function addCommentInDOM (commentData) {
-//     const commentShower = getCommentShower(commentData)
-//     commentShower.classList.add(`ischild`)
-
-//     commentShower.setAttribute("data-id", commentData.id)
-
-//     if (commentData.parent) {
-//         const parentComment = document.querySelector(`.comment${commentData.parent}`)
-//         parentComment.insertAdjacentElement('afterend', commentShower)
-        
-//         // remove response form
-//         parentComment.querySelector("#response-form").remove()
-
-//     } else {
-//         document.querySelector("#all-comments").prepend(commentShower)
-//     }
-// }
-
-
-// /**
-//  * create comment in db
-//  * @param {Comment} comment
-//  */
-// export async function createComment (comment, csrftoken) {
-//     await fetch("/comments/create/", {
-//         method: "POST",
-//         headers: {
-//             "Content-Type": "application/json",
-//             "Accept": "application/json",
-//             "X-CSRFToken": csrftoken,
-//         },
-//         body: JSON.stringify(comment)
-//     })
-//         .then(response => response.json())
-//         .then(data => {
-//             if (data.status === "ok") {
-//                 addCommentInDOM(data.object)
-//             }
-//         })
-//         .catch((error) => console.log(error))
-// }
-
-
-
-// /**
-//  * update comment likes
-//  */
-// export function updateCommentLikes(comment) {
-//     const comment_id = comment.dataset.id
-
-//     fetch(`/comments/${comment_id}/like/`, {
-//         method: "GET",
-//         headers: {
-//             "Accept": "application/json",
-//         }
-//     })
-//         .then(response => response.json())
-//         .then(data => {
-//             if (data.status === "ok") {
-
-//                 // update comment likes in DOM
-//                 comment.querySelector(".action p > span").innerText = data.likes
-//             }
-//         })
-//         .catch((error) => console.log(error))
-// }
 
