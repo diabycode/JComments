@@ -1,6 +1,9 @@
 # JComments
-Système de commentaires mode réseau social
 
+
+<video src="Vid%C3%A9o%20sans%20titre%20-%20Made%20with%20Clipchamp.mp4" controls title="Title"></video>
+
+Système de commentaires mode réseau social
 
 --
 ## Installation du projet
@@ -54,4 +57,10 @@ python manage.py runserver
 http://127.0.0.1:8000/
 ``` 
 
+Connectez-vous a l'interface d'administration
+http://127.0.0.1:8000/admin avec les données:
+```bash
+username: admin
+mdp: 123
+``` 
 
