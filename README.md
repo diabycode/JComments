@@ -41,14 +41,6 @@ python manage.py migrate
 ```
 
 
-### *Création d'un super utilisateur*
-utitliser la commande suivante pour créer un super utilisateur qui aura accès à l'interface d'administration.
-
-```bash
-python manage.py createsuperuser
-```
-
-
 ### *Lancement du serveur*
 
 ```bash	
