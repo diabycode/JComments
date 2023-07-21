@@ -33,21 +33,6 @@ Rendez-vous dans le repertoire source: **src**
 cd src
 ```
 
-### Effectuer les migrations
-
-```bash
-python manage.py makemigrations
-python manage.py migrate
-```
-
-
-### *Création d'un super utilisateur*
-utitliser la commande suivante pour créer un super utilisateur qui aura accès à l'interface d'administration.
-
-```bash
-python manage.py createsuperuser
-```
-
 
 ### *Lancement du serveur*
 
@@ -61,8 +46,7 @@ python manage.py runserver
 http://127.0.0.1:8000/
 ``` 
 
-Connectez-vous a l'interface d'administration
-http://127.0.0.1:8000/admin avec les données:
+Connectez-vous a l'interface 
 ```bash
 username: admin
 mdp: 123
